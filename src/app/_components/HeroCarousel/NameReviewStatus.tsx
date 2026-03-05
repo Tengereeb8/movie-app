@@ -16,8 +16,13 @@ const NameReviewStatus = ({ name, rate }: NameProps) => {
       </div>
       <div className="w-20.75 h-12 flex gap-1 items-center">
         <img
-          className="h-7 w-7 object-cover"
+          className="h-7 w-7 object-cover dark:hidden"
           src="/HeroCarousel/Vector.svg"
+          alt="Star review"
+        />
+        <img
+          className="h-7 w-7 object-cover dark:flex hidden"
+          src="/wstar.svg"
           alt="Star review"
         />
         <p className="text-[18px] font-semibold leading-7 text-[#09090B] lg:text-white dark:text-[#fafafa]">
