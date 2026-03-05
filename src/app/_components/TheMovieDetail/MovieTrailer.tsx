@@ -28,13 +28,18 @@ export const MovieTrailer = ({ movie, trailers }: MovieTrailerProps) => {
         </div>
         <div className="flex items-center gap-1">
           <img
-            className="h-4 w-4 object-cover"
+            className="h-4 w-4 object-cover dark:hidden"
             src="HeroCarousel/Vector.svg"
+            alt="Star review"
+          />
+          <img
+            className="h-4 w-4 object-cover dark:flex hidden"
+            src="/wstar.svg"
             alt="Star review"
           />
           <div>
             <p className="text-sm font-semibold text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">
-              {movie.vote_average}
+              {movie.vote_average.toFixed(1)}
               <span className="font-normal text-[#71717A]">/10</span>
             </p>
             <p className="text-[#71717A] text-xs">{movie.popularity}k</p>
@@ -50,7 +55,7 @@ export const MovieTrailer = ({ movie, trailers }: MovieTrailerProps) => {
         {trailer ? (
           <iframe
             className="w-full lg:max-w-190 aspect-video lg:rounded-sm"
-            src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=0`}
+            src={`https://www.youtube.com/embed/${trailer.key}?autoplay=0&mute=0`}
             title={trailer.name}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

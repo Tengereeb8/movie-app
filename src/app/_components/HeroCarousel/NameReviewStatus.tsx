@@ -21,7 +21,7 @@ const NameReviewStatus = ({ name, rate }: NameProps) => {
           alt="Star review"
         />
         <p className="text-[18px] font-semibold leading-7 text-[#09090B] lg:text-white dark:text-[#fafafa]">
-          {rate}
+          {rate.toFixed(1)}
           <span className="font-normal text-[16px] leading-6 text-[#71717A] lg:text-white">
             /10
           </span>

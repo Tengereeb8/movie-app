@@ -24,7 +24,7 @@ const Search = async ({ searchParams }: SearchProps) => {
 
   let movies: Movie[] = [];
   let totalPages = 1;
-  let totalMovies = null
+  let totalMovies = null;
 
   if (query && genre) {
     const data = await getSearchValue(String(query), currentPage);
@@ -32,17 +32,17 @@ const Search = async ({ searchParams }: SearchProps) => {
       genreIds.every((id) => movie.genre_ids.includes(Number(id))),
     );
     totalPages = data.total_pages;
-    totalMovies = data.total_results
+    totalMovies = data.total_results;
   } else if (query) {
     const data = await getSearchValue(String(query), currentPage);
     movies = data.results;
     totalPages = data.total_pages;
-    totalMovies = data.total_results
+    totalMovies = data.total_results;
   } else if (genre) {
     const data = await getGenreMoviesPlay(String(genre), currentPage);
     movies = data.results;
     totalPages = data.total_pages;
-    totalMovies = data.total_results
+    totalMovies = data.total_results;
   }
 
   const getPageNumbers = () => {
@@ -83,7 +83,7 @@ const Search = async ({ searchParams }: SearchProps) => {
 
         {movies.length > 0 ? (
           <>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4">
               {movies.map((movie) => (
                 <Link href={`/${movie.id}`} key={movie.id}>
                   <Movies

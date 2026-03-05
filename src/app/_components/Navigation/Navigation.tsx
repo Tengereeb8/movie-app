@@ -17,8 +17,6 @@ import { getSearchValue } from "@/lib/api";
 import { X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
-
-
 const NavigationContent = () => {
   const [searchActive, setSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -32,8 +30,6 @@ const NavigationContent = () => {
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
   };
-
-
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -90,7 +86,7 @@ const NavigationContent = () => {
   const moviesToDisplay = movieResults;
 
   return (
-    <div className="w-full max-w-7xl h-14.75 flex justify-between items-center px-5 md:mb-3 lg:p-0">
+    <div className="w-full max-w-7xl h-14.75 flex justify-between items-center px-5 md:mb-3 lg:p-0 relative">
       <Link className={searchActive ? "hidden" : "block"} href="/">
         <Logo />
       </Link>
@@ -114,7 +110,7 @@ const NavigationContent = () => {
         </InputGroup>
         <X className="dark:text-white lg:hidden" onClick={closeSearch} />
         <div
-          className={`${showResults ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute left-[5%] lg:w-144.25 lg:left-[-40%] top-full z-10`}
+          className={`${showResults ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute lg:w-144.25 left-1/5 top-full z-10`}
         >
           {moviesToDisplay.length !== 0 ? (
             <div>
@@ -122,7 +118,13 @@ const NavigationContent = () => {
                 <p className="dark:text-white text-center p-10">...Loading</p>
               ) : (
                 moviesToDisplay.slice(0, 5).map((movie) => (
-                  <Link key={movie.id} href={`/${movie.id}`} onClick={() =>{setShowResults(false)}}>
+                  <Link
+                    key={movie.id}
+                    href={`/${movie.id}`}
+                    onClick={() => {
+                      setShowResults(false);
+                    }}
+                  >
                     <div>
                       <div className="p-2 flex gap-4 h-29 dark:hover:bg-neutral-900 hover:bg-neutral-200 transition-colors duration-200 ease-out cursor-pointer rounded-sm">
                         <img
@@ -137,12 +139,17 @@ const NavigationContent = () => {
                             </h1>
                             <div className="flex items-center gap-1">
                               <img
-                                className="h-4 w-4 object-cover"
+                                className="h-4 w-4 object-cover dark:hidden"
                                 src="/HeroCarousel/Vector.svg"
                                 alt="Star review"
                               />
+                              <img
+                                className="h-4 w-4 object-cover dark:flex hidden"
+                                src="/wstar.svg"
+                                alt="Star review"
+                              />
                               <p className="text-[12px] font-medium text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">
-                                {movie.vote_average}
+                                {movie.vote_average.toFixed(1)}
                                 <span className="font-normal text-[#71717A]">
                                   /10
                                 </span>
@@ -156,7 +163,12 @@ const NavigationContent = () => {
                   </Link>
                 ))
               )}
-              <Link href={buildSeeAllUrl()} onClick={() =>{setShowResults(false)}}>
+              <Link
+                href={buildSeeAllUrl()}
+                onClick={() => {
+                  setShowResults(false);
+                }}
+              >
                 <h3 className="font-medium cursor-pointer text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900">
                   See all results for "{searchValue}"
                 </h3>

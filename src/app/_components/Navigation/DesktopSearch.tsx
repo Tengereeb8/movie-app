@@ -72,21 +72,23 @@ export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
             <div className="w-full py-4">
               <div className="w-full h-px bg-gray-300"></div>
             </div>
-            <ul className="flex w-77 lg:w-144.25 gap-4 h-fit flex-wrap">
+            <ul className="flex w-77 lg:w-144.25 gap-1 h-fit flex-wrap">
               {genres.map((genre) => {
                 const isActive = activeGenres.includes(String(genre.id));
                 return (
                   <Badge
                     key={genre.id}
                     onClick={() => toggleGenre(genre.id)}
-                    className={`cursor-pointer font-semibold text-[12px] px-3.5 h-5 select-none transition-colors
+                    className={`cursor-pointer font-semibold text-[12px]  h-5 select-none transition-colors
                       ${
                         isActive
                           ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white"
                           : "text-black bg-white border border-gray-300 dark:bg-black dark:text-white dark:border-neutral-800"
                       }`}
                   >
-                    {genre.name}
+                    {genre.name}{" "}
+                    <img src="/cr.svg" alt="" className="dark:hidden" />
+                    <img src="/wcr.svg" alt="" className="dark:flex hidden" />
                   </Badge>
                 );
               })}
